@@ -26,7 +26,14 @@ class Window: NSWindow {
         titlebarAppearsTransparent = true
         title = WINDOW_TITLE
         level = NSWindow.Level.floating
-        hasShadow = false   
+        hasShadow = true
+        backgroundColor = .clear
+        
+        let visualEffect = NSVisualEffectView()
+        visualEffect.blendingMode = .behindWindow
+        visualEffect.state = .active
+        visualEffect.material = .light
+        contentView = visualEffect
     }
     
     public func showWindow() {

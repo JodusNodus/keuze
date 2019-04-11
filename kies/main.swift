@@ -8,62 +8,87 @@
 
 import Foundation
 import Cocoa
-import AppKit
-
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var window: Window!
+    var dataSource: DataSource!
     var promptText: PromptText!
     var inputField: InputField!
     var tableView: TableView!
-    
+    var scrollView: NSScrollView!
     
     func applicationDidBecomeActive(_ notification: Notification) {
         
     }
     
     func applicationDidResignActive(_ notification: Notification) {
-        exit(0);
+        cancel();
     }
     
     func applicationDidFinishLaunching(_ notification: Notification)
     {
+        print(CommandLine.arguments)
         window = Window()
+        dataSource = DataSource()
+        dataSource.updateItems(items: ["Olivia", "Amelia", "Isla", "Emily", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace", "Oliver", "Harry", "Jack", "George", "Noah", "Charlie", "Jacob", "Alfie"])
         
-        addPromptText()
-        addInputField()
-        addList()
+        setupPromptText()
+        setupInputField()
+        setupList()
     
         app.activate(ignoringOtherApps: true)
         window.showWindow()
     }
     
-    func addPromptText() {
+    func setupPromptText() {
         let text = "kies iets:"
         promptText = PromptText(text: text)
         window.contentView!.addSubview(promptText)
     }
     
-    func addInputField() {
-        inputField = InputField(width: window.frame.width - promptText.bounds.width, offsetY: promptText.bounds.width);
+    func setupInputField() {
+        inputField = InputField(width: window.frame.width - promptText.bounds.width, offsetY: promptText.bounds.width, appDelegate: self);
         window.contentView!.addSubview(inputField)
         window.makeFirstResponder(inputField)
     }
     
-    func addList() {
-        let scrollView = NSScrollView(frame: LIST_RECT)
-        tableView = TableView()
+    func handleInputChange(input: String) {
+        dataSource.updateSort(query: input)
+        tableView.reloadData()
+    }
+    
+    func handleMoveUp() {
+        tableView.selectRowAbove()
+    }
+    
+    func handleMoveDown() {
+        tableView.selectRowBelow()
+    }
+    
+    func handleSelect() {
+        let value = dataSource.sortedItems[tableView.selectedRow]
+        print(value)
+        cancel()
+    }
+    
+    func setupList() {
+        scrollView = NSScrollView(frame: LIST_RECT)
+        tableView = TableView(dataSource: dataSource)
         
+        scrollView.horizontalScrollElasticity = .none
         scrollView.verticalScrollElasticity = .none
-        scrollView.hasVerticalScroller = true
-        scrollView.hasVerticalRuler = true
+        scrollView.hasVerticalScroller = false
+        scrollView.hasHorizontalScroller = false
         scrollView.drawsBackground = false
         scrollView.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
         scrollView.documentView = tableView
         scrollView.automaticallyAdjustsContentInsets = false
-        
         window.contentView!.addSubview(scrollView)
+    }
+    
+    func cancel() {
+        exit(0)
     }
 }
 
