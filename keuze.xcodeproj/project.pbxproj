@@ -35,7 +35,7 @@
 		EF3CE234203361F2000CAD87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF3CE235203361F2000CAD87 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EF860B222034C4D50087C40D /* head.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = head.h; sourceTree = "<group>"; };
-		EFEAA7E6203393C200FB0263 /* kies */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kies; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFEAA7E6203393C200FB0263 /* keuze */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = keuze; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 		EF3CE22A203361F2000CAD87 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EFEAA7E6203393C200FB0263 /* kies */,
+				EFEAA7E6203393C200FB0263 /* keuze */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,9 +100,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EFEAA7E5203393C200FB0263 /* kies */ = {
+		EFEAA7E5203393C200FB0263 /* keuze */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EFEAA7EC203393C200FB0263 /* Build configuration list for PBXNativeTarget "kies" */;
+			buildConfigurationList = EFEAA7EC203393C200FB0263 /* Build configuration list for PBXNativeTarget "keuze" */;
 			buildPhases = (
 				EFEAA7E2203393C200FB0263 /* Sources */,
 				EFEAA7E3203393C200FB0263 /* Frameworks */,
@@ -111,9 +111,9 @@
 			);
 			dependencies = (
 			);
-			name = kies;
+			name = keuze;
 			productName = kies;
-			productReference = EFEAA7E6203393C200FB0263 /* kies */;
+			productReference = EFEAA7E6203393C200FB0263 /* keuze */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -132,7 +132,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EF3CE224203361F2000CAD87 /* Build configuration list for PBXProject "kies" */;
+			buildConfigurationList = EF3CE224203361F2000CAD87 /* Build configuration list for PBXProject "keuze" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -145,7 +145,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EFEAA7E5203393C200FB0263 /* kies */,
+				EFEAA7E5203393C200FB0263 /* keuze */,
 			);
 		};
 /* End PBXProject section */
@@ -283,6 +283,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/kies/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -307,6 +308,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/kies/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -319,7 +321,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EF3CE224203361F2000CAD87 /* Build configuration list for PBXProject "kies" */ = {
+		EF3CE224203361F2000CAD87 /* Build configuration list for PBXProject "keuze" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF3CE238203361F2000CAD87 /* Debug */,
@@ -328,7 +330,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EFEAA7EC203393C200FB0263 /* Build configuration list for PBXNativeTarget "kies" */ = {
+		EFEAA7EC203393C200FB0263 /* Build configuration list for PBXNativeTarget "keuze" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EFEAA7EA203393C200FB0263 /* Debug */,
