@@ -13,7 +13,8 @@ Universal fuzzy selector for macOs comparable with dmenu.
 ## Basic Usage
 
 ```bash
-$ ls | keuze -p "list:"
+$ alias keuze="keuze -fs 12 -fn Monaco"
+$ ls | keuze -p "list"
 ```
 
 ## License
