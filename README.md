@@ -1,6 +1,8 @@
 # Keuze
 Universal fuzzy selector for macOs comparable with dmenu.
 
+![example screenshot](screenshots/screenshot1.png)
+
 - Gets list of items from stdin.
 - Sorts choices as you type.
 - Sends result to stdout.
