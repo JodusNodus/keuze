@@ -23,16 +23,16 @@ class Window: NSWindow {
         isOpaque = true
         canHide = false
         isMovable = false
-        titlebarAppearsTransparent = true
         title = WINDOW_TITLE
         level = NSWindow.Level.floating
         hasShadow = true
         backgroundColor = .clear
         
         let visualEffect = NSVisualEffectView()
-        visualEffect.blendingMode = .behindWindow
+        visualEffect.blendingMode = .withinWindow
         visualEffect.state = .active
-        visualEffect.material = .light
+        visualEffect.material = .appearanceBased
+        visualEffect.frame = CONTAINER_RECT
         contentView = visualEffect
     }
     

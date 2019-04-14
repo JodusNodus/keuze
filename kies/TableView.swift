@@ -17,17 +17,17 @@ class TableView: NSTableView, NSTableViewDelegate {
         super.init(frame: .zero)
         self.dataSource = dataSource
         rowSizeStyle = .custom
-        backgroundColor = .clear
         headerView = nil
         allowsEmptySelection = false
         allowsMultipleSelection = false
         allowsTypeSelect = false
         rowHeight = FONT_HEIGHT
-        selectionHighlightStyle = .sourceList
+        selectionHighlightStyle = .none
         delegate = self
-        usesAlternatingRowBackgroundColors = true
+        backgroundColor = .clear
         
         column.isEditable = false
+        column.width = LIST_RECT.width
         addTableColumn(column)
     }
     
@@ -63,9 +63,26 @@ class TableView: NSTableView, NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
-        let c = cell as? NSCell
-        c?.font = FONT
-        c?.usesSingleLineMode = true
+        let c = cell as! NSTextFieldCell
+        let value = c.stringValue
+        c.font = FONT
+        c.usesSingleLineMode = true
+        if (row == selectedRow) {
+            c.backgroundColor = .alternateSelectedControlColor
+            c.textColor = .alternateSelectedControlTextColor
+            c.drawsBackground = true
+        } else {
+            c.drawsBackground = false
+            c.textColor = .textColor
+        }
+        let match = (dataSource as! DataSource).matches[value]
+        if (match != nil && !match!.isEmpty) {
+            let range = (value.lowercased() as NSString).range(of: match!)
+            let attribute = NSMutableAttributedString.init(string: value)
+            attribute.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue , range: range)
+            c.attributedStringValue = attribute
+        }
+
     }
 
     func tableViewSelectionDidChange(_ notification: Notification) {

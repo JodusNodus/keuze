@@ -16,6 +16,7 @@ class InputField: NSTextField, NSTextFieldDelegate {
         super.init(frame: NSMakeRect(HEADER_RECT.minX + offsetY, HEADER_RECT.minY, width, HEADER_RECT.height))
         self.appDelegate = appDelegate
         stringValue = ""
+        placeholderString = "…"
         isEditable = true
         isSelectable = true
         delegate = self

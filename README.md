@@ -1,11 +1,9 @@
-# Kies
+# Keuze
 Universal fuzzy selector for macOs comparable with dmenu.
 
 - Gets list of items from stdin.
-- Fuzzy-searches as you type.
+- Sorts choices as you type.
 - Sends result to stdout.
-- Fully customizable colors
-- Run `kies -h` for more info.
 
 ## Install
 
@@ -15,25 +13,14 @@ Universal fuzzy selector for macOs comparable with dmenu.
 ## Basic Usage
 
 ```bash
-$ ls | kies -p "list:"
+$ ls | keuze -p "list:"
 ```
-
-### Examples
-- [Example vim integration](examples/kies.vim)
-![vim example screenshot](screenshots/vim.png)
-- [Example application launcher](examples/run.sh)
-![run example screenshot](screenshots/run.png)
-- Clipboard (Coming soon)
-- 1Password (Coming soon)
-
-## Thanks to
-Sdegutis for creating [choose](https://github.com/sdegutis/choose) which this is forked from.
 
 ## License
 
 > Released under MIT license.
 >
-> Copyright (c) 2018 Thomas Billiet
+> Copyright (c) 2019 Thomas Billiet
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

@@ -9,26 +9,24 @@
 import Foundation
 import Cocoa
 
-
 class DataSource: NSObject, NSTableViewDataSource {
-    var items: [String] = []
-    var sortedItems: [String] = []
+    var items = [String]()
+    var sortedItems = [String]()
+    var matches = [String: String]()
+    var scores = [String: Float]()
     
-    func updateItems(items: [String]) {
+    func updateItems(_ items: [String]) {
         self.items = items
         self.sortedItems = items
     }
     
     func updateSort(query: String) {
-        if (query.count < 0) {
-            sortedItems = items
-            return
-        }
-        var scores = [String: Float]()
         for item in items {
-            scores[item] = Float(item.lowercased().longestCommonSubsequence(query.lowercased()).count) / Float(query.count)
+            let match = item.lowercased().longestCommonSubsequence(query.lowercased())
+            matches[item] = match
+            scores[item] = Float(match.count) / Float(query.count)
         }
-        
+
         sortedItems = items.sorted(by: { (a, b) -> Bool in
             scores[a]! > scores[b]!
         })

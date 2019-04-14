@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var window: Window!
     var dataSource: DataSource!
     var promptText: PromptText!
+    var divider: NSBox!
     var inputField: InputField!
     var tableView: TableView!
     var scrollView: NSScrollView!
@@ -26,25 +27,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         cancel();
     }
     
+    func receiveStdin() -> [String] {
+        var lines: [String] = []
+        while let line = readLine() {
+            lines.append(line)
+        }
+        return lines
+    }
+    
     func applicationDidFinishLaunching(_ notification: Notification)
     {
-        print(CommandLine.arguments)
+        let items = receiveStdin()
         window = Window()
         dataSource = DataSource()
-        dataSource.updateItems(items: ["Olivia", "Amelia", "Isla", "Emily", "Ava", "Lily", "Mia", "Sophia", "Isabella", "Grace", "Oliver", "Harry", "Jack", "George", "Noah", "Charlie", "Jacob", "Alfie"])
+        dataSource.updateItems(items)
         
         setupPromptText()
+        setupDivider()
         setupInputField()
         setupList()
     
-        app.activate(ignoringOtherApps: true)
         window.showWindow()
+        app.activate(ignoringOtherApps: true)
     }
     
     func setupPromptText() {
         let text = "kies iets:"
         promptText = PromptText(text: text)
         window.contentView!.addSubview(promptText)
+    }
+    
+    func setupDivider() {
+        divider = NSBox(frame: DIVIDER_RECT)
+        divider.boxType = .custom
+        divider.fillColor = .textColor
+        divider.borderWidth = 0
+        window.contentView!.addSubview(divider)
     }
     
     func setupInputField() {
@@ -78,7 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         scrollView.horizontalScrollElasticity = .none
         scrollView.verticalScrollElasticity = .none
-        scrollView.hasVerticalScroller = false
+        scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
         scrollView.drawsBackground = false
         scrollView.autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
