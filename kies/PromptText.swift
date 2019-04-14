@@ -11,17 +11,15 @@ import Cocoa
 
 class PromptText: NSTextField {
     init(text: String) {
-        let stringSize = ceil(NSString(string: text).size(withAttributes: [.font: FONT]).width) + 4;
-        super.init(frame: NSMakeRect(HEADER_RECT.minX, HEADER_RECT.minY, stringSize, HEADER_RECT.height))
+        super.init(frame: layouts.promptRect)
         stringValue = text
         isEditable = false
         drawsBackground = false
         isSelectable = false
         bezelStyle = .squareBezel
-        font = FONT
+        font = settings.font
         isBordered = false
-        usesSingleLineMode = true
-        autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.minYMargin]
+        autoresizingMask = [NSView.AutoresizingMask.width]
     }
 
     required init?(coder: NSCoder) {

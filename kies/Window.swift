@@ -19,7 +19,7 @@ class Window: NSWindow {
     }
     
     init() {
-        super.init(contentRect: WINDOW_RECT, styleMask: .borderless, backing: .buffered, defer: false)
+        super.init(contentRect: layouts.windowRect, styleMask: .borderless, backing: .buffered, defer: false)
         isOpaque = true
         canHide = false
         isMovable = false
@@ -32,7 +32,7 @@ class Window: NSWindow {
         visualEffect.blendingMode = .withinWindow
         visualEffect.state = .active
         visualEffect.material = .appearanceBased
-        visualEffect.frame = CONTAINER_RECT
+        visualEffect.frame = layouts.windowRect
         contentView = visualEffect
     }
     

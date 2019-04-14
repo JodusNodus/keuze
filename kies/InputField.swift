@@ -12,11 +12,10 @@ import Cocoa
 class InputField: NSTextField, NSTextFieldDelegate {
     var appDelegate: AppDelegate!
     
-    init(width: CGFloat, offsetY: CGFloat, appDelegate: AppDelegate) {
-        super.init(frame: NSMakeRect(HEADER_RECT.minX + offsetY, HEADER_RECT.minY, width, HEADER_RECT.height))
+    init(appDelegate: AppDelegate) {
+        super.init(frame: layouts.inputRect)
         self.appDelegate = appDelegate
         stringValue = ""
-        placeholderString = "…"
         isEditable = true
         isSelectable = true
         delegate = self
@@ -25,15 +24,14 @@ class InputField: NSTextField, NSTextFieldDelegate {
         drawsBackground = false
         focusRingType = .none
         target = self
-        font = FONT
+        font = settings.font
         allowsEditingTextAttributes = false
         isAutomaticTextCompletionEnabled = false
         allowsDefaultTighteningForTruncation = false
         maximumNumberOfLines = 1
-        usesSingleLineMode = true
         cell?.wraps = false
         cell?.isScrollable = true
-        autoresizingMask = [NSView.AutoresizingMask.width, NSView.AutoresizingMask.height]
+        autoresizingMask = [NSView.AutoresizingMask.width]
     }
     
     required init?(coder: NSCoder) {

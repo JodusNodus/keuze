@@ -16,18 +16,16 @@ class TableView: NSTableView, NSTableViewDelegate {
     init(dataSource: DataSource) {
         super.init(frame: .zero)
         self.dataSource = dataSource
-        rowSizeStyle = .custom
         headerView = nil
         allowsEmptySelection = false
         allowsMultipleSelection = false
         allowsTypeSelect = false
-        rowHeight = FONT_HEIGHT
         selectionHighlightStyle = .none
         delegate = self
         backgroundColor = .clear
         
         column.isEditable = false
-        column.width = LIST_RECT.width
+        column.width = layouts.listRect.width
         addTableColumn(column)
     }
     
@@ -65,7 +63,7 @@ class TableView: NSTableView, NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
         let c = cell as! NSTextFieldCell
         let value = c.stringValue
-        c.font = FONT
+        c.font = settings.font
         c.usesSingleLineMode = true
         if (row == selectedRow) {
             c.backgroundColor = .alternateSelectedControlColor

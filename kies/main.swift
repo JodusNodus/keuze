@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import Darwin
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -37,7 +38,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification)
     {
+        if (settings.promptText == nil) {
+            fputs("Please provide a prompt text\n", stderr)
+            exit(1)
+        }
+        if (settings.font == nil) {
+            fputs("The provided font could not be loaded\n", stderr)
+            exit(1)
+        }
         let items = receiveStdin()
+        if (items.count == 0) {
+            fputs("No data was received on stdin\n", stderr)
+            exit(1)
+        }
+        
         window = Window()
         dataSource = DataSource()
         dataSource.updateItems(items)
@@ -52,21 +66,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func setupPromptText() {
-        let text = "kies iets:"
-        promptText = PromptText(text: text)
+        promptText = PromptText(text: settings.promptText!)
         window.contentView!.addSubview(promptText)
     }
     
     func setupDivider() {
-        divider = NSBox(frame: DIVIDER_RECT)
+        divider = NSBox(frame: layouts.dividerRect)
         divider.boxType = .custom
-        divider.fillColor = .textColor
+        divider.fillColor = .lightGray
         divider.borderWidth = 0
         window.contentView!.addSubview(divider)
     }
     
     func setupInputField() {
-        inputField = InputField(width: window.frame.width - promptText.bounds.width, offsetY: promptText.bounds.width, appDelegate: self);
+        inputField = InputField(appDelegate: self);
         window.contentView!.addSubview(inputField)
         window.makeFirstResponder(inputField)
     }
@@ -86,14 +99,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func handleSelect() {
         let value = dataSource.sortedItems[tableView.selectedRow]
-        print(value)
+        fputs(value, stdout)
         cancel()
     }
     
     func setupList() {
-        scrollView = NSScrollView(frame: LIST_RECT)
+        scrollView = NSScrollView(frame: layouts.listRect)
         tableView = TableView(dataSource: dataSource)
-        
+
         scrollView.horizontalScrollElasticity = .none
         scrollView.verticalScrollElasticity = .none
         scrollView.hasVerticalScroller = true
